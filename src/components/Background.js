@@ -7,14 +7,14 @@ const Wrapper = styled.section`
   height: 100vh;
   overflow: hidden;
 
-  &::before{
+  &::before {
     content: "";
     width: 100vw;
     height: 100vh;
     position: absolute;
     left: 0;
     top: 0;
-    background: rgba(0,0,0,0.25);
+    background: rgba(0, 0, 0, 0.25);
   }
 
   ${(props) =>
@@ -32,6 +32,8 @@ const ImageRow = styled.div`
 
 const ImageWrapper = styled.div`
   width: ${(props) => props.width}px;
+  height: ${(props) => props.height}px;
+  flex-shrink: 0;
   display: flex;
 `;
 
@@ -52,12 +54,12 @@ const Images = ({ width, height, imageUrls }) => {
   let imagesAdded = 0;
   let row = [];
 
-  while(imagesAdded < (rows * columns)){
-    for( let image of imageUrls ){
-      if( rowCount < rows ) row.push(image);
-      
-      if( row.length === rows ){
-        imagesAdded += row.length
+  while (imagesAdded < rows * columns) {
+    for (let image of imageUrls) {
+      if (rowCount < rows) row.push(image);
+
+      if (row.length === rows) {
+        imagesAdded += row.length;
         rowCount = 0;
         grid.push(row);
         row = [];
@@ -67,13 +69,11 @@ const Images = ({ width, height, imageUrls }) => {
 
   const images = grid.map((row, i) => (
     <ImageRow>
-      {
-        row.map((src, i) => (
-          <ImageWrapper width={width}>
-            <Image src={src} alt="todo" key={i}/>
-          </ImageWrapper> 
-        ))
-      }
+      {row.map((src, i) => (
+        <ImageWrapper width={width} height={height}>
+          <Image src={src} alt="todo" key={i} />
+        </ImageWrapper>
+      ))}
     </ImageRow>
   ));
 

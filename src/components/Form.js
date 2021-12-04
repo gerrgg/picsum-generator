@@ -18,12 +18,12 @@ const InnerWrap = styled.div`
 `;
 
 const Button = styled.button`
-  background: palevioletred;
+  background: ${(props) => (props.theme === "dark" ? "#000" : "palevioletred")};
   color: wheat;
   padding: 20px;
   font-size: 20px;
   border: 0;
-  margin: 2rem auto;
+  margin: 2rem 10px;
   text-align: center;
 `;
 
@@ -66,6 +66,16 @@ const Label = styled.label`
 `;
 
 function Form({ width, setWidth, height, setHeight, reroll, limit, setLimit }) {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    reroll();
+  };
+
+  const handleDownload = (e) => {
+    e.preventDefault(e);
+    console.log("download");
+  };
+
   return (
     <FormWrapper>
       <Title>Picsum Generator</Title>
@@ -102,7 +112,12 @@ function Form({ width, setWidth, height, setHeight, reroll, limit, setLimit }) {
         </InputWrapper>
       </InnerWrap>
       <Center>
-        <Button onClick={() => reroll()}>Re-roll</Button>
+        <Button theme={"light"} onClick={(e) => handleSubmit(e)}>
+          Get Images
+        </Button>
+        <Button theme={"dark"} onClick={(e) => handleDownload(e)}>
+          Download
+        </Button>
       </Center>
     </FormWrapper>
   );

@@ -1,6 +1,6 @@
 // returns window width and height
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
 export function useWindowDimension() {
   const [dimension, setDimension] = useState([
@@ -11,17 +11,17 @@ export function useWindowDimension() {
     const debouncedResizeHandler = debounce(() => {
       setDimension([window.innerWidth, window.innerHeight]);
     }, 100);
-    window.addEventListener('resize', debouncedResizeHandler);
-    return () => window.removeEventListener('resize', debouncedResizeHandler);
-  }, []); 
+    window.addEventListener("resize", debouncedResizeHandler);
+    return () => window.removeEventListener("resize", debouncedResizeHandler);
+  }, []);
   return dimension;
 }
 
 function debounce(fn, ms) {
   let timer;
-  return _ => {
+  return (_) => {
     clearTimeout(timer);
-    timer = setTimeout(_ => {
+    timer = setTimeout((_) => {
       timer = null;
       fn.apply(this, arguments);
     }, ms);

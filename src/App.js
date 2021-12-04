@@ -26,24 +26,32 @@ const getImageUrls = (width, height, limit) => {
     )}/${width}/${height}`;
   }
 
-  console.log(srcs);
-
   return srcs;
 };
 
 function App() {
   const [width, setWidth] = useState(400);
   const [height, setHeight] = useState(400);
+
+  const [bgWidth, setBgWidth] = useState(width);
+  const [bgHeight, setBgHeight] = useState(height);
+
   const [limit, setLimit] = useState(12);
+
   const [imageUrls, setImageUrls] = useState(
-    getImageUrls(width, height, limit)
+    getImageUrls(bgWidth, bgHeight, limit)
   );
 
-  const reroll = () => setImageUrls(getImageUrls(width, height, limit));
+  const reroll = (e) => {
+    setBgWidth(width);
+    setBgHeight(height);
+
+    setImageUrls(getImageUrls(bgWidth, bgHeight, limit));
+  };
 
   return (
     <Wrapper>
-      <Background width={width} height={height} imageUrls={imageUrls} />
+      <Background width={bgWidth} height={bgHeight} imageUrls={imageUrls} />
       <Form
         width={width}
         setWidth={setWidth}
