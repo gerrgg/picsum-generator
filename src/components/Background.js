@@ -1,12 +1,21 @@
 import { useState } from "react";
+import { useWindowDimension } from "../hooks/useWindowDimension";
 import styled, { css } from "styled-components";
 
 const Wrapper = styled.section`
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  display: flex;
-  flex-flow: row wrap;
+
+  &::before{
+    content: "";
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: rgba(0,0,0,0.25);
+  }
 
   ${(props) =>
     props.primary &&
@@ -14,6 +23,11 @@ const Wrapper = styled.section`
       background: palevioletred;
       color: white;
     `};
+`;
+
+const ImageRow = styled.div`
+  display: flex;
+  flex-flow: row;
 `;
 
 const ImageWrapper = styled.div`
@@ -27,16 +41,41 @@ const Image = styled.img`
 `;
 
 const Images = ({ width, height, imageUrls }) => {
-  // get window width
-  // get window hieght
+  const [windowWidth, windowHeight] = useWindowDimension();
 
-  const images = imageUrls.map((src, i) => (
-    <ImageWrapper width={width} height={height}>
-      <Image src={src} alt="todo" key={i} />
-    </ImageWrapper>
+  const rows = Math.ceil(windowWidth / width);
+  const columns = Math.ceil(windowHeight / height);
+
+  const grid = [];
+
+  let rowCount = 0;
+  let imagesAdded = 0;
+  let row = [];
+
+  while(imagesAdded < (rows * columns)){
+    for( let image of imageUrls ){
+      if( rowCount < rows ) row.push(image);
+      
+      if( row.length === rows ){
+        imagesAdded += row.length
+        rowCount = 0;
+        grid.push(row);
+        row = [];
+      }
+    }
+  }
+
+  const images = grid.map((row, i) => (
+    <ImageRow>
+      {
+        row.map((src, i) => (
+          <ImageWrapper width={width}>
+            <Image src={src} alt="todo" key={i}/>
+          </ImageWrapper> 
+        ))
+      }
+    </ImageRow>
   ));
-
-  console.log(images);
 
   return images;
 };
