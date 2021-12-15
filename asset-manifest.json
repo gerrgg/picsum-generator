@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/picsum-generator/static/css/main.9ded6ed7.chunk.css",
-    "main.js": "/picsum-generator/static/js/main.ba5b9fa3.chunk.js",
-    "main.js.map": "/picsum-generator/static/js/main.ba5b9fa3.chunk.js.map",
+    "main.js": "/picsum-generator/static/js/main.f67fdc39.chunk.js",
+    "main.js.map": "/picsum-generator/static/js/main.f67fdc39.chunk.js.map",
     "runtime-main.js": "/picsum-generator/static/js/runtime-main.4ca9bfe7.js",
     "runtime-main.js.map": "/picsum-generator/static/js/runtime-main.4ca9bfe7.js.map",
     "static/js/2.c701b6fe.chunk.js": "/picsum-generator/static/js/2.c701b6fe.chunk.js",
@@ -17,6 +17,6 @@
     "static/js/runtime-main.4ca9bfe7.js",
     "static/js/2.c701b6fe.chunk.js",
     "static/css/main.9ded6ed7.chunk.css",
-    "static/js/main.ba5b9fa3.chunk.js"
+    "static/js/main.f67fdc39.chunk.js"
   ]
 }
