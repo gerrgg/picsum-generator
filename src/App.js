@@ -46,7 +46,7 @@ function App() {
     setBgWidth(width);
     setBgHeight(height);
 
-    setImageUrls(getImageUrls(bgWidth, bgHeight, limit));
+    setImageUrls(getImageUrls(width, height, limit));
   };
 
   return (

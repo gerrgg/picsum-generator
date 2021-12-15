@@ -8,6 +8,7 @@ const Wrapper = styled.section`
   overflow: hidden;
 
   &::before {
+    pointer-events: none;
     content: "";
     width: 100vw;
     height: 100vh;

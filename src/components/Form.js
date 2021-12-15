@@ -7,7 +7,7 @@ const FormWrapper = styled.form`
   left: 50%;
   transform: translate(-50%, -50%);
   background: rgba(255, 255, 255, 0.8);
-  height: 400px;
+  height: 650px;
   width: 400px;
   border-radius: 20px;
 `;
